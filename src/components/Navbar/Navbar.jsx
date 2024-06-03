@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import styles from './navbar.module.css';
 import axios from 'axios'
+import logo from '/images/logo.png'
 
-
-function Navbar({categories, state, setFilteredProducts, dispatch}) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false); //manages menu on mobile screen
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const logo = "https://i.ibb.co/xH512Ht/Screenshot-2024-05-31-at-1-30-43-PM.png"
   const dropdownBtn = ["My Portal", "New Client"]
 
   return (

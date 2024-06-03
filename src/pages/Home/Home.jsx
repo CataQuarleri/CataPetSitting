@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './home.module.css';
 import {Link} from 'react-router-dom'
-
-function Home({categories, loading}){
-  
-const loadedContent =  <h1>I'm Home!</h1>
+import { useAuthStore } from '../../stores/authStore';
+function Home({user, loading}){
+  const {userData} = useAuthStore()
+const loadedContent =  <h1>I'm Home! Hello {userData?.firstName ? userData.firstName : "guest"}</h1>
 
 
   return (

@@ -11,7 +11,7 @@ button {
       align-items: center;
       align-content: center;
       background-color:  var(--background-orange); 
-      padding: 1.5rem;
+      padding: 0.5rem;
       color: white;
       position: relative;
     }
