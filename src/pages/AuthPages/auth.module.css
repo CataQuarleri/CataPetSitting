@@ -1,0 +1,64 @@
+body {
+    background-color: var(--background-color);
+  }
+  
+  .form {
+    background: var(--input-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+    margin: 2rem 0;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+  }
+  .input {
+    display: block;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+  }
+  
+  .button {
+    background-color: var(--button-background);
+    color: var(--button-color);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: var(--primary-color);
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .form {
+      max-width: 500px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) {
+    .form {
+      max-width: 600px;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    .form {
+      max-width: 700px;
+    }
+  }

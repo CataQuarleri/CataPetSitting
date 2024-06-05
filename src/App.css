@@ -1,23 +1,18 @@
 :root {
-  /* Primary color for the mountains and text */
-  --mountain-dark-blue: #1E4056;
-  --mountain-orange: #E89C5D;
-  --mountain-light-blue: #6AB1D7;
-
-  /* Color for the sun */
-  --sun-color: #FFD365;
-
-  /* Background and banner colors */
-  --background-dark: #2D2F34;
-  --banner-teal: #66A5AD;
-  --background-orange: #FBD8A3;
-
-  /* Text color */
-  --text-white: #FFFFFF;
+  --primary-color: #E89C5D;
+  --secondary-color: #6AB1D7;
+  --background-color: #FBD8A3;
+  --text-color: #1E4056;
+  --input-background: #ffffff;
+  --input-border-color: #cccccc;
+  --button-background: #E89C5D;
+  --button-color: #ffffff;
+  --button-hover-color: #FFB74D;
 }
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

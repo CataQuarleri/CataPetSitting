@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 import {auth} from '../auth/firebase.js'
-import {signInWithEmailAndPassword} from 'firebase/auth'
+import {signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import axios from 'axios'
 
 const BASE_URL =  'http://localhost:8080'
@@ -14,7 +14,7 @@ export const useAuthStore = create((set, get)=> ({
     // },
     signUp: async (payload)=>{
         try {
-            const response = await axios.post(`${BASE_URL}/signUp`, payload)
+            const response = await axios.post(`${BASE_URL}/users/api/signUp`, payload)
             set((state)=>({...state, error:false, userAuth: 'Sign up succesfully'}))
         } catch (err) {
             set((state)=>({...state, error: true, errorData: err.message}))
@@ -25,10 +25,12 @@ export const useAuthStore = create((set, get)=> ({
         try {
             const response = await signInWithEmailAndPassword(auth, payload.email, payload.password);
             console.log("RESPONSE", response)
+            get().getUserData(response.user.uid)
+            console.log("GET", get())
                 set((state)=>({...state, error: false, userAuth: response.data}))
-     
             
         } catch (err) {
+            console.log("ERROR IN LOGIN", err)
             set((state)=>({...state, error: true, errorData: err.message}))
 
             
@@ -49,10 +51,23 @@ export const useAuthStore = create((set, get)=> ({
     initialLoad: (user)=>{
         // if(user){
             set((state)=>({...state, error: false, userAuth: user, authIsReady: true}))
-        if(user){
-
+            console.log("INITIAL LOAD", user)
+            if(user){
+            get().getUserData(user.uid)
         }
             // }
 
-    }
+    },
+    logOut: async ()=>{
+        try {
+            
+            await signOut(auth)
+            set((state)=>({...state, userAuth: null, userData: null}))
+        } catch (error) {
+            console.log("ERROR", error)
+            set((state)=>({...state, error: true, errorData: error.message}))
+
+        }
+
+    },
 }))
