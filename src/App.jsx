@@ -18,14 +18,17 @@ function App() {
 			initialLoad(user);
 			// axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`;
 			// setUserAuth({authIsReady:true,user:user})
-			unsub();    
+			unsub();
 		});
 	}, []);
 	return (
 		<>
 			{authIsReady && (
 				<>
+					<body className="body">
 					<Navbar />
+						
+					
 					<Routes>
 						<Route
 							path='/'
@@ -48,8 +51,8 @@ function App() {
 							element={<SignUp />}
 						/>
 					</Routes>
-        
-          <Footer />
+					</body>
+					<Footer />
 				</>
 			)}
 		</>

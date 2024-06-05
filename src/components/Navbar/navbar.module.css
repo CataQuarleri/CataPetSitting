@@ -105,7 +105,7 @@ button {
     }
     
     .dropdownLink {
-      color: var(--text-color);
+      color: var(--text-color-2);
       padding: 0.75rem 1rem;
       text-decoration: none;
       display: block;

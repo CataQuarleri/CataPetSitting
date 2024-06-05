@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import styles from './navbar.module.css';
 import {useAuthStore} from '../../stores/authStore'
 import logo from '/images/logo.png'
+
 import{auth} from '../../auth/firebase.js'
 
 
