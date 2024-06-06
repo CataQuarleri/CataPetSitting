@@ -12,7 +12,7 @@ function SignUp() {
 		const payload = Object.fromEntries(formData);
 		console.log('payload', payload);
 		authStore.signUp(payload);
-		navigate('/login');
+		navigate('/');
 	};
 
 	return (

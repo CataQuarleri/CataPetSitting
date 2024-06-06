@@ -15,7 +15,11 @@ export const useAuthStore = create((set, get)=> ({
     signUp: async (payload)=>{
         try {
             const response = await axios.post(`${BASE_URL}/users/api/signUp`, payload)
+            console.log("SIGN UP RESPONSE", response)
+        
+               
             set((state)=>({...state, error:false, userAuth: 'Sign up succesfully'}))
+            get().login(payload)
         } catch (err) {
             set((state)=>({...state, error: true, errorData: err.message}))
 

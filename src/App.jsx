@@ -1,8 +1,9 @@
 import Navbar from './components/Navbar/Navbar.jsx';
 import AboutUs from './pages/AboutUs/AboutUs.jsx';
 import Home from './pages/Home/Home.jsx';
-import Login from './pages/AuthPages/Login.jsx';
-import SignUp from './pages/AuthPages/SignUp.jsx';
+import Login from './components/AuthPages/Login.jsx'
+import ClientPortal from './pages/ClientPortal/ClientPortal.jsx';
+import SignUp from './components/AuthPages/SignUp.jsx';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useAuthStore } from './stores/authStore.js';
@@ -11,7 +12,7 @@ import { auth } from './auth/firebase.js';
 import Footer from './components/Footer/Footer.jsx';
 
 function App() {
-	const { user, authIsReady, initialLoad } = useAuthStore();
+	const { userData, authIsReady, initialLoad } = useAuthStore();
 	useEffect(() => {
 		let unsub = auth.onAuthStateChanged((user) => {
 			console.log('authentication', user);
@@ -24,36 +25,36 @@ function App() {
 	return (
 		<>
 			{authIsReady && (
-				<>
-					<body className="body">
-					<Navbar />
-						
-					
-					<Routes>
-						<Route
-							path='/'
-							element={<Home user={user} />}
-						/>
-						<Route
-							path='/about-us'
-							element={<AboutUs />}
-						/>
-						{user ? (
-							''
-						) : (
+					<div className='body'>
+						<Navbar />
+
+						<Routes>
 							<Route
-								path='/clientportal/My-Portal'
-								element={<Login />}
+								path='/'
+								element={<Home user={userData?.firstName} />}
 							/>
-						)}
-						<Route
-							path='/clientportal/New-Client'
-							element={<SignUp />}
-						/>
-					</Routes>
-					</body>
+							<Route
+								path='/about-us'
+								element={<AboutUs />}
+							/>
+							{userData ? (
+								<Route
+									path='/myprofile'
+									element={<ClientPortal />}
+								/>
+							) : (
+								<Route
+									path='/login'
+									element={<Login />}
+								/>
+							)}
+							<Route
+								path='/register'
+								element={<SignUp />}
+							/>
+						</Routes>
 					<Footer />
-				</>
+					</div>
 			)}
 		</>
 	);

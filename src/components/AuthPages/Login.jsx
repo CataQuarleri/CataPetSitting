@@ -1,8 +1,10 @@
 import { useAuthStore } from '../../stores/authStore';
 import { useNavigate } from 'react-router-dom';
 import styles from './auth.module.css'
+import { useState } from 'react';
 
 function Login() {
+	const [loginError, setLoginError] = useState(null)
 	const authStore = useAuthStore();
 	const navigate = useNavigate();
 	const loginSubmit = async (e) => {
@@ -10,7 +12,13 @@ function Login() {
 		const formData = new FormData(e.target);
 		const payload = Object.fromEntries(formData);
 		await authStore.login(payload);
-		navigate('/');
+		console.log(authStore.error)
+		if(authStore.error){
+			console.log("im in error submit")
+			setLoginError(authStore.errorData)
+		} else {
+			navigate('/');
+		}
 	};
 	return (
 		<>
@@ -29,6 +37,7 @@ function Login() {
 					name='password'
 					placeholder='Password'
 				/>
+				{loginError && <div>{loginError}</div>}
 				<button className={styles.button}>Log In</button>
 			</form>
 		</>

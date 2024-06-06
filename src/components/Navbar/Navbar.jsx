@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import styles from './navbar.module.css';
 import {useAuthStore} from '../../stores/authStore'
 import logo from '/images/logo.png'
+import SidebarNav from '../../components/clientDashboard/SidebarNav.jsx'
 
 import{auth} from '../../auth/firebase.js'
 
@@ -11,7 +12,11 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false); //manages menu on mobile screen
   const navigate = useNavigate()
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   const {userData, logOut} = useAuthStore()
+
   const [dropdownBtn, setDropdownBtn] = useState([])
   async function handleClientPortal(action){
     if(action == "Log Out"){
@@ -24,8 +29,11 @@ function Navbar() {
   }
 useEffect(()=>{
   if(userData){
+  console.log("USER IS IN")
     setDropdownBtn(["My Portal", "Log Out"])
   }else{
+  console.log("USER IS OUT")
+
     setDropdownBtn(["My Portal", "New Client"])
 
   }
@@ -42,7 +50,13 @@ useEffect(()=>{
         <div className={`${menuOpen ? styles.menu :  styles.displayNone} ${menuOpen ? styles.menuOpen : ''}`}>
           <Link to="/" className={styles.link}>HOME</Link>
           <Link to="/about-us" className={styles.link}>ABOUT US</Link>
-          <div className={styles.dropdown}>
+          {userData ? <><Link to="/myprofile" className={styles.link}>MY PROFILE</Link> 
+          <div onClick={()=>logOut()} className={styles.link}>LOG OUT</div>
+          </> : 
+          <><Link to="/login" className={styles.link}>LOGIN</Link>
+          <Link to="/register" className={styles.link}>REGISTER</Link></>}
+         
+          {/* <div className={styles.dropdown}>
             <div className={styles.dropbtn}>CLIENT PORTAL</div>
             <div className={styles.dropdownContent}>
            
@@ -53,10 +67,11 @@ useEffect(()=>{
                   </div>
               )}
             </div>
-          </div>
+          </div> */}
           {/* <Link to="/login" className={styles.link}>LOGIN/SIGNUP</Link> */}
         </div>
       </nav>
+      {/* <SidebarNav isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> */}
     </>
   );
 };

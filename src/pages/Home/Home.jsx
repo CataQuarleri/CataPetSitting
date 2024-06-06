@@ -4,7 +4,7 @@ import {Hero} from '../../components/Home/Hero.jsx'
 import { useAuthStore } from '../../stores/authStore';
 function Home({user, loading}){
   const {userData} = useAuthStore()
-const loadedContent = <><Hero /></>
+const loadedContent = <><Hero /> <h1>Hello {user}</h1></>
 
 
   return (
