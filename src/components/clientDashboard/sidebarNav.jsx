@@ -10,7 +10,7 @@ function SidebarNav({ setSelectedMenuItem }) {
     <button onClick={()=> setSelectedMenuItem('pets')} className={styles.link}>My Pets</button>
     <button onClick={()=> setSelectedMenuItem('addInfo')} className={styles.link}>Add Information</button>
     <button onClick={()=> setSelectedMenuItem('addPet')} className={styles.link}>Add a Pet</button>
-    <button onClick={()=> setSelectedMenuItem('logOut')} className={styles.link}>Log Out</button>
+    <button onClick={()=> setSelectedMenuItem('logOut')} className={`${styles.link} ${styles.lastLink}`}>Log Out</button>
   </div>
   );
 };

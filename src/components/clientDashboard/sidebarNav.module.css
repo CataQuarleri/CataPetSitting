@@ -28,12 +28,16 @@
   padding: 0.5rem 0;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-bottom: 1px solid white
 }
 
 .link:hover {
   background-color: var(--secondary-color);
 }
 
+.lastLink {
+  border: none;
+}
 
 .mobile {
   flex-direction: row;
