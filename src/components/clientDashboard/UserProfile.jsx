@@ -1,87 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { useUserStore } from '../../stores/userStore'
+import Input from './Input.jsx'
 import styles from './clientStyles.module.css'
 function UserProfile() {
     const { userData } = useUserStore();
-    const [entries, setEntries] = useState([]);
     const [editProfile, setEditProfile] = useState(false)
-    useEffect(() => {
-      let entries = Object.entries(userData);
-      let eachEntry = entries.map((entry, i) => {
-        if (entry[0] === '_id' || entry[0] === '__v') {
-          return null;
-        } else if(typeof entry[1] === 'object') {
-            for (const key in entry[1]){
-             return  <div key={i} className={styles.entry}>
-                <label htmlFor={entry[1][key]} className={styles.label}>{key}</label>
-                <input
-                  name={entry[1][key]}
-                  value={entry[1][key]}
-                  disabled
-                  className={styles.input}
-                />
-              </div>
-            }
-        }else {
-          return (
-            <div key={i} className={styles.entry}>
-              <label htmlFor={entry[1]} className={styles.label}>{entry[0]}</label>
-              <input
-                name={entry[1]}
-                value={entry[1]}
-                disabled
-                className={styles.input}
-              />
-            </div>
-          );
-        }
-      });
-      setEntries(eachEntry);
-    }, [userData]);
+    const toggleEdit = () => {
+        setEditProfile(!editProfile);
+      };
+    
   
     return (
       <div className={styles.userProfile}>
-        <h3 className={styles.header}>User Profile</h3>
-        <button className={styles.toggleButton} onClick={()=>setEditProfile(!editProfile)}>Edit my profile</button>
-        {/* {entries} */}
+        <div className={styles.profileHeader}><h3 className={styles.header}>User Profile</h3>
+        <div className={styles.toggleSwitchContainer}> <label className={styles.toggleSwitch}>
+          <input type="checkbox" checked={editProfile} onChange={toggleEdit} />
+          <span className={styles.slider}></span>
+        </label>Edit profile</div>
         
-        <div className={styles.entry} style={{display: !editProfile ? userData.firstName && "flex" : "none"}}>
-              <label htmlFor={userData.firstName} className={styles.label}>First Name</label>
-              <input
-                name={userData.firstName}
-                value={userData.firstName}
-                disabled={!editProfile}
-                className={styles.input}
-              />
-            </div>
-           <div className={styles.entry} style={{display: !editProfile ? userData.lastName && "flex" : "none"}}>
-              <label htmlFor={userData.lastName} className={styles.label}>Last Name</label>
-              <input
-                name={userData.lastName}
-                value={userData.lastName}
-                disabled={!editProfile}
-                className={styles.input}
-              />
-            </div> 
-            <div className={styles.entry}>
-              <label htmlFor={userData.phone} className={styles.label}>Main Phone#</label>
-              <input
-                name={userData.phone}
-                value={userData.phone}
-                disabled={!editProfile}
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.entry}>
-              <label htmlFor={userData.email} className={styles.label}> {editProfile ? "To change your Email address, contact us to ..." : "Email"}</label>
-              <input
-                name={userData.email}
-                value={userData.email}
-                disabled={!editProfile}
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.entry} style={{display: !editProfile ? userData.contactPreference && "flex" : "none"}}>
+       
+      </div>
+      <form onSubmit="">
+            <Input label="First Name" data="firstName" editProfile={editProfile}/>
+            <Input label="Last Name" data="lastName" editProfile={editProfile}/>
+            <Input label={editProfile ? "To change your Email address, contact us to ..." : "Email"} data="email" editProfile={editProfile}/>
+            <Input label="Main Phone#" data="phone" editProfile={editProfile}/>
+            <div className={styles.entry} style={{display: !editProfile ? !userData.contactPreference && "none" : "flex"}}>
               <label htmlFor={userData.contactPreference} className={styles.label}>Contact Preference</label>
               <select
                 name={userData.contactPreference}
@@ -95,10 +39,12 @@ function UserProfile() {
               <option value='WhatsApp'>WhatsApp</option>
               </select>
             </div> 
+            <Input label="First Name" data="firstName" editProfile={editProfile}/>
+            {/* <Input label="Address" data="address" editProfile={editProfile}/> */}
             {/* <div className={styles.entry}>
-              <label htmlFor={entry[1]} className={styles.label}>{entry[0]}</label>
+              <label htmlFor={userData.address.id} className={styles.label}>{entry[0]}</label>
               <input
-                name={entry[1]}
+                name={userData.address.id}
                 value={entry[1]}
                 disabled={!editProfile}
                 className={styles.input}
@@ -140,6 +86,8 @@ function UserProfile() {
                 className={styles.input}
               />
             </div> */}
+            {editProfile && <button type="submit" className={styles.toggleButton}>Update</button>}
+            </form>
       </div>
     );
 }

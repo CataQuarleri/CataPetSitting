@@ -28,7 +28,7 @@
   padding: 0.5rem 0;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-bottom: 1px solid white
+  /* border-bottom: 1px solid white */
 }
 
 .link:hover {
@@ -64,4 +64,39 @@
   .mobile {
     display: none;
   }
+}
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  width: 100%;
+}
+
+.dropdownLink {
+  margin: 0.25rem 0;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  width: 90%;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdownLink:hover {
+  background-color: var(--secondary-color);
+}
+
+.dropdownSection {
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  display: block;
 }
