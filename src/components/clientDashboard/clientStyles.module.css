@@ -12,23 +12,30 @@
   .profileHeader{
     display: flex;
     justify-content: space-around;
+    color: var(--text-color-2)
+
   }
   
   .header {
     font-size: 2rem;
     margin-bottom: 1rem;
     text-align: center;
+    color: var(--text-color-2)
   }
   
   .entry {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
+    color: var(--text-color-2)
+
   }
   
   .label {
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: var(--text-color-2)
+
   }
   
   .input {

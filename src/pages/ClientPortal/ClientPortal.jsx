@@ -8,7 +8,7 @@ import ViewPets from '../../components/clientDashboard/ViewPets.jsx';
 import { useUserStore } from '../../stores/userStore.js';
 import styles from './clientPortal.module.css';
 function ClientPortal() {
-	const [selectedMenuItem, setSelectedMenuItem] = useState();
+	const [selectedMenuItem, setSelectedMenuItem] = useState('profile');
 	const { profile, service, myPets, info, toggleProfile } = useUserStore();
 	const { userData } = useUserStore();
 	return (

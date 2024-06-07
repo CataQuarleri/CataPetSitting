@@ -11,6 +11,7 @@ export const useUserStore = create((set, get) => ({
 	errorData: null,
 	authIsReady: false,
 	userData: null,
+	loading: false,
 	// },
 	signUp: async (payload) => {
 		try {
@@ -28,7 +29,6 @@ export const useUserStore = create((set, get) => ({
 			const response = await signInWithEmailAndPassword(auth, payload.email, payload.password);
 			console.log('RESPONSE', response);
 			get().getUserData(response.user.uid);
-			console.log('GET', get());
 			set((state) => ({ ...state, error: false, userAuth: response.data }));
 		} catch (err) {
 			console.log('ERROR IN LOGIN', err);
@@ -45,6 +45,12 @@ export const useUserStore = create((set, get) => ({
 			console.log('ERROR', err);
 			set((state) => ({ ...state, error: true, errorData: err.message }));
 		}
+	},
+	setUserData: async (payload)=>{
+		set((state)=> ({...state, userData: payload, loading: true}))
+		await get().updateProfile(payload)
+		set((state)=> ({...state, userData: payload, loading: false}))
+
 	},
 	initialLoad: (user) => {
 		// if(user){
@@ -64,8 +70,25 @@ export const useUserStore = create((set, get) => ({
 			set((state) => ({ ...state, error: true, errorData: error.message }));
 		}
 	},
-	addPet: async () => {},
-	updateProfile: async () => {},
+	addPet: async () => {
+	
+		
+	},
+	updateProfile: async (payload) => {
+		try {
+			set((state) => ({ ...state, loading: true}))
+			let response = await axios.patch(`${BASE_URL}/users/api/${payload._id}`, payload)
+			// if(response.status == 200){
+			// 	await get().getUserData(payload._id)
+			// 	set((state) => ({ ...state, loading: false}))
+			// }else if (response.status == 500) {
+			// 	set((state) => ({ ...state, loading: false, error: true, errorData: "Could not update user profile"}))
+			// }
+		} catch (error) {
+			console.log("ERROR updating user", error)
+			set((state) => ({ ...state, error: true, errorData: error.message }));
+		}
+	},
 	updatePet: async () => {},
 	requestServices: async () => {},
 }));

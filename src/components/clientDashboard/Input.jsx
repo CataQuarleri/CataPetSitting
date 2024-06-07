@@ -1,7 +1,7 @@
 import styles from './clientStyles.module.css'
 import { useUserStore } from '../../stores/userStore'
 
-function Input({label, data, editProfile}) {
+function Input({label, data, editProfile, setFormData}) {
     const { userData } = useUserStore();
 
   return (
@@ -12,6 +12,7 @@ function Input({label, data, editProfile}) {
                 placeholder={userData[data]}
                 disabled={data == "email" ? true : !editProfile}
                 className={styles.input}
+                onChange={(e)=> setFormData(prevState => ({...prevState, [data]: e.target.value}))}
               />
             </div>
   )
