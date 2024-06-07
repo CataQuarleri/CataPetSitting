@@ -16,11 +16,11 @@ function ClientPortal() {
 			<SidebarNav setSelectedMenuItem={setSelectedMenuItem} />
 			<div className={styles.content}>
 				<div className={styles.fullPage}>
-					{selectedMenuItem == 'addPet' && <AddPet />}
 					{selectedMenuItem == 'profile' && <UserProfile />}
 					{selectedMenuItem == 'service' && <UserServices />}
-					{selectedMenuItem == 'addInfo' && <UpdateUser />}
 					{selectedMenuItem == 'pets' && <ViewPets />}
+					{selectedMenuItem == 'addInfo' && <UpdateUser />}
+					{selectedMenuItem == 'addPet' && <AddPet />}
 				</div>
 			</div>
 		</div>
