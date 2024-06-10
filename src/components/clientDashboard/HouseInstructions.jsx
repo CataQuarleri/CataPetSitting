@@ -10,15 +10,19 @@ function HouseInstructions() {
 	const { userData, updateProfile, setUserData, loading } = useUserStore();
 	const [editHouseInstructions, setEditHouseInstructions] = useState(false);
 	const [addressLine, setAddressLine] = useState(null);
-  const [coordinates, setCoordinates ] = useState([])
+	const [coordinates, setCoordinates] = useState([]);
 	const [formData, setFormData] = useState(userData);
 	const toggleEdit = () => {
 		setEditHouseInstructions(!editHouseInstructions);
 	};
-// console.log("FORM DATA", formData)
+	// console.log("FORM DATA", formData)
 	const handleUpdateSubmit = (e) => {
 		e.preventDefault();
-    setFormData(prevState => ({...prevState, [address.coordinates]: coordinates, "address.addressLine": addressLine}))
+		setFormData((prevState) => ({
+			...prevState,
+			[address.coordinates]: coordinates,
+			'address.addressLine': addressLine
+		}));
 		// const formData = new FormData(e.target);
 		setEditHouseInstructions(false);
 		const payload = formData;
@@ -31,13 +35,13 @@ function HouseInstructions() {
 		setFormData(userData);
 	}, [userData]);
 
-  function sendPlaceDetailsRequest(feature, geocoder) {
-    console.log("IN PLACE DETAIL")
-    setAddressLine(feature.formatted)
-    setCoordinates([feature.lon, feature.lat])
-    console.log(feature); // the result of the search
-    return geocoder.sendPlaceDetailsRequest(feature);
-  }
+	function sendPlaceDetailsRequest(feature, geocoder) {
+		console.log('IN PLACE DETAIL');
+		setAddressLine(feature.formatted);
+		setCoordinates([feature.lon, feature.lat]);
+		console.log(feature); // the result of the search
+		return geocoder.sendPlaceDetailsRequest(feature);
+	}
 	return (
 		<GeoapifyContext apiKey={API_KEY}>
 			<div className={styles.userProfile}>
@@ -73,10 +77,10 @@ function HouseInstructions() {
 								name='address1'
 								debounceDelay='1'
 								allowNonVerifiedHouseNumber='true'
-                addDetails={true}
-                sendPlaceDetailsRequestFunc={sendPlaceDetailsRequest}
-                // postprocessHook={handlePostProcessHook}
-                // placeSelect={handleSendPlaceDetailsRequestFunc}
+								addDetails={true}
+								sendPlaceDetailsRequestFunc={sendPlaceDetailsRequest}
+								// postprocessHook={handlePostProcessHook}
+								// placeSelect={handleSendPlaceDetailsRequestFunc}
 							/>
 						</div>
 
