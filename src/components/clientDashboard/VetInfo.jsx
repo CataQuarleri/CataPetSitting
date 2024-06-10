@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useUserStore } from '../../stores/userStore'
 import Input from './Input.jsx'
 import styles from './clientStyles.module.css'
-function UserProfile() {
+function VetInfo() {
     const { userData, updateProfile, setUserData, loading } = useUserStore();
-    const [editEmergencyContact, setEditEmergencyContact] = useState(false)
+    const [editVetInfo, setEditVetInfo] = useState(false)
     const [formData, setFormData] = useState(userData)
     const toggleEdit = () => {
-        setEditEmergencyContact(!editEmergencyContact);
+        setEditVetInfo(!editVetInfo);
       };
 
     	const handleUpdateSubmit = (e) => {
         e.preventDefault();
         // const formData = new FormData(e.target);
-        setEditEmergencyContact(false)
+        setEditVetInfo(false)
         const payload = formData;
         console.log('payload', payload);
-        setUserData(payload)
+        updateProfile(payload)
         // userStore.updateProfile(payload);
         // navigate('/');
       };
@@ -25,20 +25,21 @@ function UserProfile() {
       }, [userData]);
     return (
       <div className={styles.userProfile}>
-        <div className={styles.profileHeader}><h3 className={styles.header}>EMERGENCY CONTACT</h3>
+        <div className={styles.profileHeader}><p className={styles.header}>VETERINARIAN CONTACT INFORMATION</p>
         <div className={styles.toggleSwitchContainer}> <label className={styles.toggleSwitch}>
-          <input type="checkbox" checked={editEmergencyContact} onChange={toggleEdit} />
+          <input type="checkbox" checked={editVetInfo} onChange={toggleEdit} />
           <span className={styles.slider}></span>
-        </label>Edit Contact</div>
+        </label>Edit Vet Info</div>
       </div>
 {  !loading &&  <form onSubmit={handleUpdateSubmit}>
-            <Input setFormData={setFormData} label="Name" data="emergencyContact.name" editProfile={editEmergencyContact}/>
-            <Input setFormData={setFormData} label="Relation" data="emergencyContact.relation" editProfile={editEmergencyContact}/>
-            <Input setFormData={setFormData} label="Phone" data="emergencyContact.phone" editProfile={editEmergencyContact}/>
-            {editEmergencyContact && <button type="submit" className={styles.toggleButton}>Update</button>}
+            <Input setFormData={setFormData} label="Name of Dr or institution" data="vetInfo.vet"  editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Address" data="vetInfo.address"  editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Website" data="vetInfo.website"  editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Phone" data="vetInfo.phone"  editProfile={editVetInfo}/>
+            {editVetInfo && <button type="submit" className={styles.toggleButton}>Update</button>}
             </form>}
       </div>
     );
 }
 
-export default UserProfile
+export default VetInfo

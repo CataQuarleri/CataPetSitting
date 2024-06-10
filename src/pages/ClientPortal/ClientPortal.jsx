@@ -7,6 +7,8 @@ import UserServices from '../../components/clientDashboard/UserServices.jsx';
 import ViewPets from '../../components/clientDashboard/ViewPets.jsx';
 import { useUserStore } from '../../stores/userStore.js';
 import styles from './clientPortal.module.css';
+import HouseInstructions from '../../components/clientDashboard/HouseInstructions.jsx';
+import VetInfo from '../../components/clientDashboard/VetInfo.jsx';
 function ClientPortal() {
 	const [selectedMenuItem, setSelectedMenuItem] = useState('profile');
 	const { profile, service, myPets, info, toggleProfile } = useUserStore();
@@ -17,9 +19,10 @@ function ClientPortal() {
 			<div className={styles.content}>
 				<div className={styles.fullPage}>
 					{selectedMenuItem == 'profile' && <UserProfile />}
-					{selectedMenuItem == 'service' && <UserServices />}
-					{selectedMenuItem == 'pets' && <ViewPets />}
 					{selectedMenuItem == 'emergencyContact' && <AddEmergencyContact />}
+					{selectedMenuItem == 'houseInstructions' && <HouseInstructions />}
+					{selectedMenuItem == 'vetInfo' && <VetInfo />}
+					{selectedMenuItem == 'pets' && <ViewPets />}
 					{selectedMenuItem == 'addPet' && <AddPet />}
 				</div>
 			</div>
