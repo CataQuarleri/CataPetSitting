@@ -32,7 +32,7 @@ function SidebarNav({ setSelectedMenuItem }) {
         <div className={styles.dropdownMenu}>
           <button onClick={()=> setSelectedMenuItem('profile')} className={styles.dropdownLink}><FiUser />
 Client Details</button>
-          <button onClick={()=> setSelectedMenuItem('emergencyContacts')} className={styles.dropdownLink}><MdOutlineContactEmergency />
+          <button onClick={()=> setSelectedMenuItem('emergencyContact')} className={styles.dropdownLink}><MdOutlineContactEmergency />
 Emergency Contacts</button>
           <button onClick={()=> setSelectedMenuItem('houseInstructions')} className={styles.dropdownLink}><BsHouseHeart />
 House Instructions</button>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import SidebarNav from '../../components/clientDashboard/SidebarNav.jsx';
 import AddPet from '../../components/clientDashboard/AddPet.jsx';
-import UpdateUser from '../../components/clientDashboard/UpdateUser.jsx';
+import AddEmergencyContact from '../../components/clientDashboard/AddEmergencyContact.jsx';
 import UserProfile from '../../components/clientDashboard/UserProfile.jsx';
 import UserServices from '../../components/clientDashboard/UserServices.jsx';
 import ViewPets from '../../components/clientDashboard/ViewPets.jsx';
@@ -19,7 +19,7 @@ function ClientPortal() {
 					{selectedMenuItem == 'profile' && <UserProfile />}
 					{selectedMenuItem == 'service' && <UserServices />}
 					{selectedMenuItem == 'pets' && <ViewPets />}
-					{selectedMenuItem == 'addInfo' && <UpdateUser />}
+					{selectedMenuItem == 'emergencyContact' && <AddEmergencyContact />}
 					{selectedMenuItem == 'addPet' && <AddPet />}
 				</div>
 			</div>
