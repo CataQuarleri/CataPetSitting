@@ -76,18 +76,18 @@ const PetProfile = ({ pet }) => {
           </div>
         ))}
       </div>
-
+{pet.walks && 
       <div className={styles.section}>
         <h3 className={styles.sectionHeader}>Walks</h3>
-        <p><strong>Needs:</strong> {pet.walks.needs ? 'Yes' : 'No'}</p>
-        <p><strong>Amount Daily:</strong> {pet.walks.amountDaily}</p>
-        <p><strong>Distance (Miles):</strong> {pet.walks.distanceInMiles}</p>
-        <p><strong>Time (Minutes):</strong> {pet.walks.timeInMinutes}</p>
-        <p><strong>Route:</strong> {pet.walks.route}</p>
-        <p><strong>Preferences:</strong> {pet.walks.preferences}</p>
-        <p><strong>Habits:</strong> {pet.walks.habits}</p>
-        <p><strong>Details:</strong> {pet.walks.details}</p>
-      </div>
+        <p><strong>Needs:</strong> {pet.walks?.needs ? 'Yes' : 'No'}</p>
+        <p><strong>Amount Daily:</strong> {pet.walks?.amountDaily}</p>
+        <p><strong>Distance (Miles):</strong> {pet.walks?.distanceInMiles}</p>
+        <p><strong>Time (Minutes):</strong> {pet.walks?.timeInMinutes}</p>
+        <p><strong>Route:</strong> {pet.walks?.route}</p>
+        <p><strong>Preferences:</strong> {pet.walks?.preferences}</p>
+        <p><strong>Habits:</strong> {pet.walks?.habits}</p>
+        <p><strong>Details:</strong> {pet.walks?.details}</p>
+      </div>}
 
       <div className={styles.section}>
         <h3 className={styles.sectionHeader}>Other Information</h3>

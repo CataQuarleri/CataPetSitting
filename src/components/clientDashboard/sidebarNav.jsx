@@ -47,7 +47,7 @@ Vet Info</button>
 
  Pets</span>
             {userData.pets.map((eachPet, i)=>{
-              return <button onClick={()=> setSelectedMenuItem('pets')} className={styles.dropdownLink}><TbPaw />
+              return <button onClick={()=> setSelectedMenuItem([eachPet.name])} className={styles.dropdownLink}><TbPaw />
  {eachPet.name}</button>
             })}
             
