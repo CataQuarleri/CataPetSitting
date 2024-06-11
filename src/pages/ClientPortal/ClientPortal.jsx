@@ -22,7 +22,12 @@ function ClientPortal() {
 					{selectedMenuItem == 'emergencyContact' && <AddEmergencyContact />}
 					{selectedMenuItem == 'houseInstructions' && <HouseInstructions />}
 					{selectedMenuItem == 'vetInfo' && <VetInfo />}
-					{selectedMenuItem == 'pets' && <ViewPets />}
+					{userData.pets.map((eachPet, i)=>{
+						if(selectedMenuItem == eachPet.name){
+							return  <ViewPets key={i} pet={eachPet} />
+						}
+					})}
+					
 					{selectedMenuItem == 'addPet' && <AddPet />}
 				</div>
 			</div>

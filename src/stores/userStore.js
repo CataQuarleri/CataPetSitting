@@ -55,7 +55,6 @@ export const useUserStore = create((set, get) => ({
 	initialLoad: (user) => {
 		// if(user){
 		set((state) => ({ ...state, error: false, userAuth: user, authIsReady: true }));
-		console.log('INITIAL LOAD', user);
 		if (user) {
 			get().getUserData(user.uid);
 		}

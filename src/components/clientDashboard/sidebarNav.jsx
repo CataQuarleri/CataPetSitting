@@ -12,8 +12,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { LiaUserNurseSolid } from "react-icons/lia";
 import { TbPaw } from "react-icons/tb";
 import { TiPlus } from "react-icons/ti";
+import { useUserStore } from '../../stores/userStore';
 
 function SidebarNav({ setSelectedMenuItem }) {
+  const {userData} = useUserStore()
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState()
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!isProfileDropdownOpen);
@@ -36,16 +38,19 @@ Client Details</button>
 Emergency Contacts</button>
           <button onClick={()=> setSelectedMenuItem('houseInstructions')} className={styles.dropdownLink}><BsHouseHeart />
 House Instructions</button>
-          <button onClick={()=> setSelectedMenuItem('address')} className={styles.dropdownLink}><IoLocationOutline />
-Address</button>
+          {/* <button onClick={()=> setSelectedMenuItem('address')} className={styles.dropdownLink}><IoLocationOutline />
+Address</button> */}
           <button onClick={()=> setSelectedMenuItem('vetInfo')} className={styles.dropdownLink}><LiaUserNurseSolid />
 Vet Info</button>
           <div className={styles.dropdownSection}>
             <span className={styles.sectionTitle}><TbPaw />
 
  Pets</span>
-            <button onClick={()=> setSelectedMenuItem('pets')} className={styles.dropdownLink}><TbPaw />
- MyPet1</button>
+            {userData.pets.map((eachPet, i)=>{
+              return <button onClick={()=> setSelectedMenuItem('pets')} className={styles.dropdownLink}><TbPaw />
+ {eachPet.name}</button>
+            })}
+            
             <button onClick={()=> setSelectedMenuItem('addPet')} className={styles.dropdownLink}><TiPlus />
 Add Pet</button>
           </div>

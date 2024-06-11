@@ -32,10 +32,10 @@ function VetInfo() {
         </label>Edit Vet Info</div>
       </div>
 {  !loading &&  <form onSubmit={handleUpdateSubmit}>
-            <Input setFormData={setFormData} label="Name of Dr or institution" data="vetInfo.vet"  editProfile={editVetInfo}/>
-            <Input setFormData={setFormData} label="Address" data="vetInfo.address"  editProfile={editVetInfo}/>
-            <Input setFormData={setFormData} label="Website" data="vetInfo.website"  editProfile={editVetInfo}/>
-            <Input setFormData={setFormData} label="Phone" data="vetInfo.phone"  editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Name of Dr or institution" data="vet" nestedData={userData.vetInfo["vet"]}  editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Address" data="address" nestedData={userData.vetInfo["address"]}   editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Website" data="website" nestedData={userData.vetInfo["website"]}   editProfile={editVetInfo}/>
+            <Input setFormData={setFormData} label="Phone" data="phone" nestedData={userData.vetInfo["phone"]}   editProfile={editVetInfo}/>
             {editVetInfo && <button type="submit" className={styles.toggleButton}>Update</button>}
             </form>}
       </div>

@@ -17,7 +17,7 @@ function Login() {
 			console.log('im in error submit');
 			setLoginError(userStore.errorData);
 		} else {
-			navigate('/');
+			navigate('/myprofile');
 		}
 	};
 	return (

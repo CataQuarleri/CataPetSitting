@@ -15,19 +15,24 @@ function HouseInstructions() {
 	const toggleEdit = () => {
 		setEditHouseInstructions(!editHouseInstructions);
 	};
+	let address = userData.address
 	// console.log("FORM DATA", formData)
-	const handleUpdateSubmit = (e) => {
+	const handleUpdateSubmit = async (e) => {
 		e.preventDefault();
-		setFormData((prevState) => ({
-			...prevState,
-			[address.coordinates]: coordinates,
-			'address.addressLine': addressLine
-		}));
+		// console.log(coordinates)
+		// console.log(addressLine)
+		//  setFormData((prevState) => ({
+		// 	...prevState,
+		// 	address: {
+		// 		coordinates: coordinates,
+		// 		addressLine: addressLine,
+		// 	}
+		// }));
 		// const formData = new FormData(e.target);
 		setEditHouseInstructions(false);
 		const payload = formData;
 		console.log('payload', payload);
-		// updateProfile(payload);
+		updateProfile(formData);
 		// userStore.updateProfile(payload);
 		// navigate('/');
 	};
@@ -36,9 +41,15 @@ function HouseInstructions() {
 	}, [userData]);
 
 	function sendPlaceDetailsRequest(feature, geocoder) {
-		console.log('IN PLACE DETAIL');
-		setAddressLine(feature.formatted);
-		setCoordinates([feature.lon, feature.lat]);
+		// setAddressLine(feature.properties.formatted);
+		// setCoordinates([feature.properties.lon, feature.properties.lat]);
+		setFormData((prevState) => ({
+			...prevState,
+			address: {
+				coordinates: [feature.properties.lon, feature.properties.lat],
+				addressLine: feature.properties.formatted,
+			}
+		}));
 		console.log(feature); // the result of the search
 		return geocoder.sendPlaceDetailsRequest(feature);
 	}
@@ -64,43 +75,35 @@ function HouseInstructions() {
 					<form onSubmit={handleUpdateSubmit}>
 						<div
 							className={styles.entry}
+							style={{ display: !editHouseInstructions ? !userData.address.addressLine && 'none' : 'flex' }}>
+							<label
+								htmlFor='address'
+								className={styles.label}>
+								Current Address
+							</label>
+							<input type="text" value={userData.address.addressLine} disabled/>
+							</div>
+						<div
+							className={styles.entry}
 							style={{ display: !editHouseInstructions ? !userData.address.street && 'none' : 'flex' }}>
 							<label
 								htmlFor='address'
 								className={styles.label}>
-								Address
+								New Address
 							</label>
 							<GeoapifyGeocoderAutocomplete
-								// onChange={(e) => handleChange(e)}
 								lang='en'
 								type='amenity'
-								name='address1'
+								name='address'
 								debounceDelay='1'
 								allowNonVerifiedHouseNumber='true'
 								addDetails={true}
 								sendPlaceDetailsRequestFunc={sendPlaceDetailsRequest}
-								// postprocessHook={handlePostProcessHook}
-								// placeSelect={handleSendPlaceDetailsRequestFunc}
+
 							/>
 						</div>
-
-						{/* <GeoapifyGeocoderAutocomplete 
-onChange={(e)=> setFormData(prevState => ({...prevState, "address.street": e.target.value}))}
-lang="en"
-type="city"
-/> */}
-						{/* <Input setFormData={setFormData} label="Street" data="address.street"  editProfile={editHouseInstructions}/>
-            <Input setFormData={setFormData} label="City" data="address.city"  editProfile={editHouseInstructions}/>
-            <Input setFormData={setFormData} label="State" data="address.state"  editProfile={editHouseInstructions}/>
-            <Input setFormData={setFormData} label="Country" data="address.country"  editProfile={editHouseInstructions}/>
-            <Input setFormData={setFormData} label="Zip Code" data="address.zip"  editProfile={editHouseInstructions}/>
-            <Input setFormData={setFormData} label="House Instructions" data="houseInstructions" editProfile={editHouseInstructions}/> */}
-						<Input
-							setFormData={setFormData}
-							label="Who's Address is this?"
-							data='address.typeOfAddress'
-							editProfile={editHouseInstructions}
-						/>
+						
+				
 						<div
 							className={styles.entry}
 							style={{ display: !editHouseInstructions ? !userData.houseInstructions && 'none' : 'flex' }}>
@@ -110,11 +113,13 @@ type="city"
 								House Instructions
 							</label>
 							<textarea
+								value={!editHouseInstructions ? userData.houseInstructions && userData.houseInstructions : null}
 								type='text'
 								name='houseInstructions'
-								placeholder='Write as many details as you consider important: How to access? Any tricks with any door? When to take out the trash. Does any plant have special needs? '
+								placeholder={editHouseInstructions ? 'Write as many details as you consider important: How to access? Any tricks with any door? When to take out the trash. Does any plant have special needs? ' : userData.houseInstructions}
 								className={styles.input}
-								style={{ width: '100%' }}></textarea>
+								style={{ width: '100%' }}
+								onChange={(e)=> setFormData(prevState => ({...prevState, houseInstructions: e.target.value}))}></textarea>
 						</div>
 						{editHouseInstructions && (
 							<button

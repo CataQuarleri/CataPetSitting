@@ -32,9 +32,9 @@ function UserProfile() {
         </label>Edit Contact</div>
       </div>
 {  !loading &&  <form onSubmit={handleUpdateSubmit}>
-            <Input setFormData={setFormData} label="Name" data="emergencyContact.name" editProfile={editEmergencyContact}/>
-            <Input setFormData={setFormData} label="Relation" data="emergencyContact.relation" editProfile={editEmergencyContact}/>
-            <Input setFormData={setFormData} label="Phone" data="emergencyContact.phone" editProfile={editEmergencyContact}/>
+            <Input setFormData={setFormData} label="Name" nestedData={userData.emergencyContact["name"]} data="emergencyContact.name" editProfile={editEmergencyContact}/>
+            <Input setFormData={setFormData} label="Relation" nestedData={userData.emergencyContact["relation"]} data="emergencyContact.relation" editProfile={editEmergencyContact}/>
+            <Input setFormData={setFormData} label="Phone" nestedData={userData.emergencyContact["phone"]} data="emergencyContact.phone" editProfile={editEmergencyContact}/>
             {editEmergencyContact && <button type="submit" className={styles.toggleButton}>Update</button>}
             </form>}
       </div>
