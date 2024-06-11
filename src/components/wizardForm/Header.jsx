@@ -1,15 +1,30 @@
 import React from 'react'
 import { useWizard } from 'react-use-wizard';
-
+import styles from './wizardForm.module.css'
+const steps = [
+    'Main Info',
+    'Food',
+    'Behavior',
+    'Health',
+    'Walks',
+    'More Info'
+  ];
 function Header() {
-    const { handleStep, previousStep, nextStep } = useWizard();
+    const { activeStep, goToStep } = useWizard();
 
   return (
-    <>
-    <button onClick={()=>previousStep()}>Back</button>
-    <button onClick={()=>nextStep()}>Next</button>
-    </>
-  )
+    <div className={styles.stepsHeader}>
+      {steps.map((step, index) => (
+        <div
+          key={index}
+          className={`${styles.step} ${index <= activeStep ? styles.activeStep : ''}`}
+          onClick={() => goToStep(index)}
+        >
+          {step}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Header

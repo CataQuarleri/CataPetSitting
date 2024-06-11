@@ -6,7 +6,7 @@ import styles from './wizardForm.module.css';
 
 function Food({ setFormData, formData }) {
   const { nextStep, previousStep } = useWizard();
-    const [meals, setMeals] = useState(null)
+    const [meals, setMeals] = useState(formData.food.meals || [])
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -17,12 +17,24 @@ function Food({ setFormData, formData }) {
       },
     }))
     if(name == 'frequency') {
-        if(e.target.value <= 5){
-            setMeals(e.target.value)
-        }else {
-            setMeals(5)
-        }
+        const newMeals = Array.from({ length: Math.min(value, 5) }, (_, i) => meals[i] || { time: '', amount: '', typeOfFood: '', brand: '' });
+        setMeals(newMeals);
     }
+  };
+
+  const handleMealChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedMeals = meals.map((meal, i) =>
+      i === index ? { ...meal, [name]: value } : meal
+    );
+    setMeals(updatedMeals);
+    setFormData((prevData) => ({
+      ...prevData,
+      food: {
+        ...prevData.food,
+        meals: updatedMeals,
+      },
+    }));
   };
   useEffect(() => {
     console.log('something')
@@ -78,50 +90,51 @@ function Food({ setFormData, formData }) {
             className={styles.input}
           />
         </div>
-        {meals && Array.from({length: meals}).map((meal, i)=> {
-            return (<div className={styles.meals}> 
+        {meals.map((meal, i) => (
+          <div key={i} className={styles.extraInfoContainer}>
             <h4>Meal {i + 1}</h4>
             <div className={styles.entry}>
-                <label htmlFor="time" className={styles.label}>Time of day</label>
-                <input
-                  type="text"
-                  name="time"
-                  value={formData.food?.meals[i]?.time}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                />
-              </div>
-              <div className={styles.entry}>
-                <label htmlFor="amount" className={styles.label}>How much?</label>
-                <input
-                  type="text"
-                  name="amount"
-                  value={formData.food?.meals[i]?.amount}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                />
-              </div>
-              <div className={styles.entry}>
-                <label htmlFor="typeOfFood" className={styles.label}>What type of food is it? (dry, wet, raw?)</label>
-                <input
-                  type="text"
-                  name="typeOfFood"
-                  value={formData.food?.meals[i]?.typeOfFood}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                />
-              </div>
-              <div className={styles.entry}>
-                <label htmlFor="brand" className={styles.label}>What brand?</label>
-                <input
-                  type="text"
-                  name="brand"
-                  value={formData.food?.meals[i]?.brand}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                />
-              </div></div>)
-        })}
+              <label htmlFor="time" className={styles.label}>Time of day</label>
+              <input
+                type="text"
+                name="time"
+                value={meal.time}
+                onChange={(e) => handleMealChange(i, e)}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.entry}>
+              <label htmlFor="amount" className={styles.label}>How much?</label>
+              <input
+                type="text"
+                name="amount"
+                value={meal.amount}
+                onChange={(e) => handleMealChange(i, e)}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.entry}>
+              <label htmlFor="typeOfFood" className={styles.label}>What type of food is it? (dry, wet, raw?)</label>
+              <input
+                type="text"
+                name="typeOfFood"
+                value={meal.typeOfFood}
+                onChange={(e) => handleMealChange(i, e)}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.entry}>
+              <label htmlFor="brand" className={styles.label}>What brand?</label>
+              <input
+                type="text"
+                name="brand"
+                value={meal.brand}
+                onChange={(e) => handleMealChange(i, e)}
+                className={styles.input}
+              />
+            </div>
+          </div>
+        ))}
         <div className={styles.buttonContainer}>
           <button type="button" className={styles.backButton} onClick={previousStep}>
             Back

@@ -8,67 +8,80 @@ import Health from './Health'
 import Walks from './Walks'
 import MoreInfo from './MoreInfo'
 import { useState } from 'react'
+import { useUserStore } from '../../stores/userStore'
+import Footer from './Footer'
 
-function WrapperForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        typeOfPet: '',
-        breed: '',
-        sex: '',
-        yearOfBirth: '',
-        microchipped: false,
-        behavior: {
-          specialNeeds: '',
-          routine: '',
-          trainingRoutine: '',
-          fears: '',
-          notes: ''
-        },
-        health: {
-          isMedicated: false,
-          medicationInfo: []
-        },
-        allergies: {
-          hasAllergies: false,
-          typeOfAllergy: '',
-          careInstructions: '',
-          additionalInfo: ''
-        },
-        weightInPounds: '',
-        size: '',
-        lastVetVisit: '',
-        vaccines: [],
-        food: {
-          frequency: '',
-          foodAllergies: '',
-          restrictions: '',
-          notes: '',
-          meals: [{
-            time: "",
-            amount: "",
-            typeOfFood: "",
-            brand: ""
-          }]
-        },
-        treats: [],
-        walks: {
-          needs: false,
-          amountDaily: '',
-          distanceInMiles: '',
-          timeInMinutes: '',
-          route: '',
-          preferences: '',
-          habits: '',
-          details: ''
-        },
-        toys: [],
-        relevantInformation: '',
-        picture: ''
-      })
+const initialState = {
+    name: '',
+    typeOfPet: '',
+    breed: '',
+    sex: '',
+    yearOfBirth: '',
+    microchipped: false,
+    behavior: {
+      specialNeeds: '',
+      routine: '',
+      trainingRoutine: '',
+      fears: '',
+      notes: ''
+    },
+    health: {
+      isMedicated: false,
+      medicationInfo: [{
+        typeOfMedication: "",
+        amount: "",
+        time: "",
+        details: ""
+      }]
+    },
+    allergies: {
+      hasAllergies: false,
+      typeOfAllergy: '',
+      careInstructions: '',
+      additionalInfo: ''
+    },
+    weightInPounds: '',
+    size: '',
+    lastVetVisit: '',
+    vaccines: [{
+        date: "",
+        typeOfVaccine: ""
+    }],
+    food: {
+      frequency: '',
+      foodAllergies: '',
+      restrictions: '',
+      notes: '',
+      meals: [{
+        time: "",
+        amount: "",
+        typeOfFood: "",
+        brand: ""
+      }]
+    },
+    treats: [],
+    walks: {
+      needs: false,
+      amountDaily: '',
+      distanceInMiles: '',
+      timeInMinutes: '',
+      route: '',
+      preferences: '',
+      habits: '',
+      details: ''
+    },
+    toys: [],
+    relevantInformation: '',
+    picture: ''
+  }
+function WrapperForm({pet = initialState}) {
+    const [formData, setFormData] = useState(pet)
+    const {userData, addPet} = useUserStore()
   return (
   <Wizard
   startIndex={0}
   header={<Header />}
+  footer={<Footer formData={formData} userData={userData}/>}
   wrapper={<AnimatePresence mode="wait" />}>
     <MainInfo setFormData={setFormData} formData={formData} />
     <Food setFormData={setFormData} formData={formData}/>

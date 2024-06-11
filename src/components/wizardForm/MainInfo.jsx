@@ -18,7 +18,7 @@ function MainInfo({ setFormData, formData }) {
     const file = e.target.files[0];
     setFormData((prevData) => ({
       ...prevData,
-      picture: file,
+      picture: file.name,
     }));
   };
 

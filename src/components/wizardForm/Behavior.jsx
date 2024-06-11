@@ -14,7 +14,8 @@ function Behavior({ setFormData, formData }) {
         ...prevData.behavior,
         [name]: value,
       },
-    }));
+      }));
+    console.log("form DATA in behavior", formData)
   };
 
   return (

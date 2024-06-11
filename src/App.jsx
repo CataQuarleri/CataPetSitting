@@ -53,7 +53,7 @@ function App() {
 							element={<SignUp />}
 						/>
 					</Routes>
-					<Footer />
+					{/* <Footer /> */}
 				</div>
 			)}
 		</>
