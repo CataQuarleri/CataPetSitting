@@ -3,7 +3,7 @@ import { auth } from '../auth/firebase.js';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = import.meta.env.DEV ? 'http://localhost:8080' : 'https://crm-api-bpie.onrender.com'
 export const useUserStore = create((set, get) => ({
 	// state: {
 	userAuth: null,

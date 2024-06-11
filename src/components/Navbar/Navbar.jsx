@@ -3,9 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { useUserStore } from '../../stores/userStore';
 import logo from '/images/logo.png';
-import SidebarNav from '../../components/clientDashboard/SidebarNav.jsx';
-
-import { auth } from '../../auth/firebase.js';
 
 function Navbar() {
 	const [menuOpen, setMenuOpen] = useState(false); //manages menu on mobile screen
