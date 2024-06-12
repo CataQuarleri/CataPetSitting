@@ -6,9 +6,9 @@ function Hero(){
   return (
     <section className={styles.hero}>
       <div className={styles.textContainer}>
-        <h1>Professional Dog Walking and Pet Sitting Services</h1>
-        <p>Teiemer ntoferioh daow oosg suiafd srahointes</p>
-        <button className={styles.ctaButton}>Frelim us</button>
+        <h1>Professional Pet Sitting Services</h1>
+        <p>Professionally trained service, insured and bonded, to take great care of your pet, your plants and your house</p>
+        <button className={styles.ctaButton}>Get a quote!</button>
       </div>
     </section>
   );

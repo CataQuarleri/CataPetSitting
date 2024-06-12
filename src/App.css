@@ -1,14 +1,15 @@
 :root {
-  --primary-color: #E89C5D;
-  --secondary-color: #6AB1D7;
-  --background-color: #FBD8A3;
-  --text-color-2: #1E4056;
-  --text-color: #fffff;
-  --input-background: #ffffff;
+  --primary-color: #1DAAAB;
+  --secondary-color: #FFB100;
+  --background-color: #f2ebdc;
+  --text-color-2: #003844;
+  --text-color: #003844;
+  --text-color-3: #F9F7F3;
+  --input-background: #F9F7F3;
   --input-border-color: #cccccc;
-  --button-background: #E89C5D;
+  --button-background: #FFB100;
   --button-color: #ffffff;
-  --button-hover-color: #FFB74D;
+  --button-hover-color: #F194B4;
 }
 
 * {
@@ -20,3 +21,18 @@
 /* .body {
   background-image: url('/images/bigBGimage.webp')
 } */
+
+/* html { 
+  height: 100%;
+} */
+/* 
+
+body {
+  margin: 0;
+  display: flex;
+  /* place-items: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  /* height: 100vh;
+  width: 100vw; */
+/* } */
