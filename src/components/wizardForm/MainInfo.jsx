@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useWizard } from 'react-use-wizard';
 import { motion } from 'framer-motion';
-import Input from '../clientDashboard/Input'; // Assuming Input component is correctly imported
 import styles from './wizardForm.module.css';
 
 function MainInfo({ setFormData, formData }) {
@@ -18,7 +17,7 @@ function MainInfo({ setFormData, formData }) {
     const file = e.target.files[0];
     setFormData((prevData) => ({
       ...prevData,
-      picture: file.name,
+      picture: file,
     }));
   };
 
@@ -31,7 +30,7 @@ function MainInfo({ setFormData, formData }) {
       transition={{ duration: 0.5 }}
     >
       <h2 className={styles.header}>Main Information</h2>
-      <form>
+      <form enctype="multipart/form-data">
         <div className={styles.entry}>
           <label htmlFor="name" className={styles.label}>Name</label>
           <input

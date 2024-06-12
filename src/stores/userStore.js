@@ -75,7 +75,7 @@ export const useUserStore = create((set, get) => ({
 			set((state) => ({ ...state, loading: true}))
 			let response = await axios.put(`${BASE_URL}/pets/api/${userId}`, payload)
 			if(response.status == 200){
-				await get().getUserData(payload._id)
+				// await get().getUserData(userId)
 				set((state) => ({ ...state, loading: false}))
 				// return "Pet added successfully"
 			}else if (response.status == 500) {

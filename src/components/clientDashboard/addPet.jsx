@@ -3,7 +3,7 @@ import { useUserStore } from '../../stores/userStore'
 import Input from './Input.jsx'
 import styles from './clientStyles.module.css'
 import WrapperForm from '../wizardForm/WrapperForm.jsx';
-function AddPet() {
+function AddPet({setSelectedMenuItem}) {
     const { userData, updateProfile, setUserData, loading } = useUserStore();
     const [editAddPet, setEditAddPet] = useState(false)
     const [formData, setFormData] = useState(userData)
@@ -26,7 +26,7 @@ function AddPet() {
       }, [userData]);
     return (
  <>
- <WrapperForm />
+ <WrapperForm setSelectedMenuItem={setSelectedMenuItem}/>
  </>
     );
 }

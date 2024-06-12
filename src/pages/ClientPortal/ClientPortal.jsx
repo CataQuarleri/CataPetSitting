@@ -28,7 +28,7 @@ function ClientPortal() {
 						}
 					})}
 					
-					{selectedMenuItem == 'addPet' && <AddPet />}
+					{selectedMenuItem == 'addPet' && <AddPet setSelectedMenuItem={setSelectedMenuItem}/>}
 				</div>
 			</div>
 		</div>

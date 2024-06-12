@@ -10,6 +10,7 @@ import { useUserStore } from './stores/userStore.js';
 import { useEffect } from 'react';
 import { auth } from './auth/firebase.js';
 import Footer from './components/Footer/Footer.jsx';
+import SuccessPage from './pages/SuccessPage.jsx';
 
 function App() {
 	const { userData, authIsReady, initialLoad } = useUserStore();
@@ -51,6 +52,10 @@ function App() {
 						<Route
 							path='/register'
 							element={<SignUp />}
+						/>
+						<Route
+							path='/success'
+							element={<SuccessPage />}
 						/>
 					</Routes>
 					{/* <Footer /> */}

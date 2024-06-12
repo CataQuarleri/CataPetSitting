@@ -74,14 +74,14 @@ const initialState = {
     relevantInformation: '',
     picture: ''
   }
-function WrapperForm({pet = initialState}) {
+function WrapperForm({pet = initialState, setSelectedMenuItem}) {
     const [formData, setFormData] = useState(pet)
     const {userData, addPet} = useUserStore()
   return (
   <Wizard
   startIndex={0}
   header={<Header />}
-  footer={<Footer formData={formData} userData={userData}/>}
+  footer={<Footer formData={formData} userData={userData} setSelectedMenuItem={setSelectedMenuItem}/>}
   wrapper={<AnimatePresence mode="wait" />}>
     <MainInfo setFormData={setFormData} formData={formData} />
     <Food setFormData={setFormData} formData={formData}/>

@@ -19,6 +19,8 @@ function Login() {
 		} else {
 			navigate('/myprofile');
 		}
+		navigate('/myprofile');
+
 	};
 	return (
 		<>
