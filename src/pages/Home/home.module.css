@@ -12,3 +12,92 @@
   }
  
   
+.homePage {
+  font-family: 'Arial, sans-serif';
+  color: var(--text-color);
+  background-color: var(--background-color);
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.header p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ctaButton {
+  background-color: var(--button-background);
+  color: var(--button-color);
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: var(--button-hover-color);
+}
+
+.features {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.featureCards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 1rem;
+  flex: 1 1 30%;
+  max-width: 30%;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+.testimonials {
+  text-align: center;
+}
+
+.testimonialCards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.testimonialCards .card {
+  flex: 1 1 45%;
+  max-width: 45%;
+}
+
+.testimonialCards cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  color: var(--primary-color);
+}

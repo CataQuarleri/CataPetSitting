@@ -22,7 +22,7 @@ function Sidenav({ setSelectedMenuItem }) {
   return (
     <div className={`${styles.sidebar}`}>
     {/* <button onClick={()=> setSelectedMenuItem('profile')} className={styles.link}>My Profile</button> */} 
-    <button onClick={()=> setSelectedMenuItem('service')} className={styles.link}><FaRegCalendarAlt /> Services</button>
+    <button onClick={()=> setSelectedMenuItem('services')} className={styles.link}><FaRegCalendarAlt /> Services</button>
     <button className={styles.link} onClick={toggleProfileDropdown}>
     <FiUser />     
  My Profile {isProfileDropdownOpen ? <MdKeyboardArrowUp />

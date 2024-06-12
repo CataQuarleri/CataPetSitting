@@ -1,11 +1,15 @@
 // PetProfile.jsx
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './petProfile.module.css';
 import WrapperForm from '../wizardForm/WrapperForm';
 import { useUserStore } from '../../stores/userStore';
 import styles2 from './clientStyles.module.css'
+import { useReactToPrint } from "react-to-print";
+
 
 const PetProfile = ({ pet, setSelectedMenuItem }) => {
+	const petProfileRef = useRef()
+	const handlePrint = useReactToPrint({content: () => petProfileRef.current})
   const {deletePet} = useUserStore()
     const [editPetProfile, setEditPetProfile] = useState(false)
 
@@ -33,10 +37,11 @@ const PetProfile = ({ pet, setSelectedMenuItem }) => {
           <span className={styles2.slider}></span>
         </label>Edit Pet Profile
 		</div>
+		<button className={styles.updatePetBtn} onClick={handlePrint}>Print My Pet Info</button>
       <button className={styles.updatePetBtn} onClick={handleDeletePet}>Delete Pet</button>
       </div>
       {!editPetProfile ?
-      <>
+      <div>
 			<h2 className={styles.header}>{pet.name}</h2>
 			<div className={styles.section}>
 				<h3 className={styles.sectionHeader}>Picture</h3>
@@ -48,6 +53,8 @@ const PetProfile = ({ pet, setSelectedMenuItem }) => {
 					/>
 				)}
 			</div>
+			<div ref={petProfileRef} style={{margin: '10px'}}>
+
 			<div className={styles.section}>
 				<h3 className={styles.sectionHeader}>Basic Information</h3>
 				<p>
@@ -224,7 +231,8 @@ const PetProfile = ({ pet, setSelectedMenuItem }) => {
 					<strong>Relevant Information:</strong> {pet.relevantInformation}
 				</p>
 			</div>
-      </>
+			</div>
+      </div>
       :
       <WrapperForm pet={pet} />}
 		</div>

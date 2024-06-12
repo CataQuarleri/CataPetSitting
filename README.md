@@ -1,7 +1,7 @@
 # CataPetSitting
 
 ## Project Overview
-CataPetSitting is a unique platform dedicated to enriching the lives of pets and their owners. At its core is Cata, a dedicated pet sitter who connects personally with each client. This application not only facilitates reliable pet sitting services provided by Cata but also serves as a comprehensive hub where pet owners can manage and share vital dog information. Designed for both routine care and emergency situations, CataPetSitting ensures all necessary pet details are accessible to caretakers, providing peace of mind and a nurturing environment for your pets.
+CataPetSitting is a unique platform dedicated to enriching the lives of pets and their owners. At its core is Cata, a dedicated pet sitter who connects personally with each client. This application not only facilitates reliable pet sitting services provided by Cata but also serves as a comprehensive hub where pet owners can manage and share vital pet information. Designed for both routine care and emergency situations, CataPetSitting ensures all necessary pet details are accessible to caretakers, providing peace of mind and a nurturing environment for your pets.
 
 ## Features
 - **Personal Connection**: Direct link to Cata, a trusted pet sitter.

@@ -18,6 +18,7 @@ function ClientPortal() {
 			<Sidenav setSelectedMenuItem={setSelectedMenuItem} />
 			<div className={styles.content}>
 				<div className={styles.fullPage}>
+					{selectedMenuItem == 'services' && <UserServices />}
 					{selectedMenuItem == 'profile' && <UserProfile />}
 					{selectedMenuItem == 'emergencyContact' && <AddEmergencyContact />}
 					{selectedMenuItem == 'houseInstructions' && <HouseInstructions />}
