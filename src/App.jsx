@@ -1,19 +1,17 @@
 import Navbar from './components/Navbar/Navbar.jsx';
 import AboutUs from './pages/AboutUs/AboutUs.jsx';
 import Home from './pages/Home/Home.jsx';
-import Login from './components/AuthPages/Login.jsx';
-import ClientPortal from './pages/ClientPortal/ClientPortal.jsx';
-import SignUp from './components/AuthPages/SignUp.jsx';
+import Login from './pages/AuthPages/Login.jsx';
+import SignUp from './pages/AuthPages/SignUp.jsx';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { useUserStore } from './stores/userStore.js';
+import { useAuthStore } from './stores/authStore.js';
 import { useEffect } from 'react';
 import { auth } from './auth/firebase.js';
 import Footer from './components/Footer/Footer.jsx';
-import SuccessPage from './pages/SuccessPage.jsx';
 
 function App() {
-	const { userData, authIsReady, initialLoad } = useUserStore();
+	const { user, authIsReady, initialLoad } = useAuthStore();
 	useEffect(() => {
 		let unsub = auth.onAuthStateChanged((user) => {
 			console.log('authentication', user);
@@ -26,40 +24,36 @@ function App() {
 	return (
 		<>
 			{authIsReady && (
-				<div className='body'>
+				<>
+					<body className="body">
 					<Navbar />
-
+						
+					
 					<Routes>
 						<Route
 							path='/'
-							element={<Home user={userData?.firstName} />}
+							element={<Home user={user} />}
 						/>
 						<Route
 							path='/about-us'
 							element={<AboutUs />}
 						/>
-						{userData ? (
-							<Route
-								path='/myprofile'
-								element={<ClientPortal />}
-							/>
+						{user ? (
+							''
 						) : (
 							<Route
-								path='/login'
+								path='/clientportal/My-Portal'
 								element={<Login />}
 							/>
 						)}
 						<Route
-							path='/register'
+							path='/clientportal/New-Client'
 							element={<SignUp />}
 						/>
-						<Route
-							path='/success'
-							element={<SuccessPage />}
-						/>
 					</Routes>
-					{/* <Footer /> */}
-				</div>
+					</body>
+					<Footer />
+				</>
 			)}
 		</>
 	);
