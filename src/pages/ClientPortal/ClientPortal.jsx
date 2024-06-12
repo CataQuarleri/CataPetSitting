@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import SidebarNav from '../../components/clientDashboard/SidebarNav.jsx';
-import AddPet from '../../components/clientDashboard/AddPet.jsx';
+import Sidenav from '../../components/clientDashboard/Sidenav.jsx';
+import PetAddition from '../../components/clientDashboard/PetAddition.jsx';
 import AddEmergencyContact from '../../components/clientDashboard/AddEmergencyContact.jsx';
 import UserProfile from '../../components/clientDashboard/UserProfile.jsx';
 import UserServices from '../../components/clientDashboard/UserServices.jsx';
@@ -15,7 +15,7 @@ function ClientPortal() {
 	const { userData } = useUserStore();
 	return (
 		<div className={styles.clientPortal}>
-			<SidebarNav setSelectedMenuItem={setSelectedMenuItem} />
+			<Sidenav setSelectedMenuItem={setSelectedMenuItem} />
 			<div className={styles.content}>
 				<div className={styles.fullPage}>
 					{selectedMenuItem == 'profile' && <UserProfile />}
@@ -28,7 +28,7 @@ function ClientPortal() {
 						}
 					})}
 					
-					{selectedMenuItem == 'addPet' && <AddPet setSelectedMenuItem={setSelectedMenuItem}/>}
+					{selectedMenuItem == 'addPet' && <PetAddition setSelectedMenuItem={setSelectedMenuItem}/>}
 				</div>
 			</div>
 		</div>
