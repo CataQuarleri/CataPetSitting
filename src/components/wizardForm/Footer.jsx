@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Footer({formData, userData, setSelectedMenuItem}) {
     const [petSubmitted, setPetSubmitted] = useState(false)
     const [cursor, setCursor] = useState("auto")
-const {addPet} = useUserStore()
+const {addPet, updatePet} = useUserStore()
 
    async function handleSubmit(e){
     e.preventDefault()
@@ -15,7 +15,14 @@ const {addPet} = useUserStore()
         console.log("USER DATA", userData)
         let petExists = userData.pets.find(p => p.name === formData.name)
         if(petExists){
-            console.log("PET ", petExists)
+            let result = await updatePet(formData)
+            setTimeout(() => {
+                setCursor("auto")
+                setPetSubmitted(true)
+                // setSelectedMenuItem("profile")
+        
+                }, 3000)
+                console.log(result)
         }else {
             try {
                 let result = await addPet(formData)
@@ -23,7 +30,7 @@ const {addPet} = useUserStore()
                     setCursor("auto")
                     setPetSubmitted(true)
                     setSelectedMenuItem("profile")
-                navigate('/success')
+            
                     }, 3000)
                 console.log(result)
                

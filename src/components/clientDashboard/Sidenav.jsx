@@ -39,8 +39,8 @@ Emergency Contacts</button>
 House Instructions</button>
           {/* <button onClick={()=> setSelectedMenuItem('address')} className={styles.dropdownLink}><IoLocationOutline />
 Address</button> */}
-          {/* <button onClick={()=> setSelectedMenuItem('vetInfo')} className={styles.dropdownLink}><LiaUserNurseSolid />
-Vet Info</button> */}
+          <button onClick={()=> setSelectedMenuItem('vetInfo')} className={styles.dropdownLink}><LiaUserNurseSolid />
+Vet Info</button>
           <div className={styles.dropdownSection}>
             <span className={styles.sectionTitle}><TbPaw />
 

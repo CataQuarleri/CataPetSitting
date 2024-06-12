@@ -101,7 +101,45 @@ export const useUserStore = create((set, get) => ({
 			set((state) => ({ ...state, error: true, errorData: error.message }));
 		}
 	},
-	updatePet: async () => {},
+	updatePet: async (payload) => {
+		let petId = payload._id;
+		let userId = await get().userData._id
+
+		try {
+			set((state) => ({ ...state, loading: true}))
+
+			let updatedPet = await axios.put(`${BASE_URL}/pets/api/onePet/${petId}`, payload)
+			if(updatedPet.status === 200){
+				set((state) => ({ ...state, loading: false}))
+				await get().getUserData(userId)
+			}else if(response.status !== 200){
+				set((state) => ({ ...state, loading: false, error: true, errorData: "Could not update user profile"}))
+			
+			}
+		} catch (error) {
+			console.log("ERROR updating pet", error)
+			set((state) => ({ ...state, error: true, errorData: error.message }));
+		}
+	},
+	deletePet: async (payload)=>{
+		let petId = payload._id;
+		let userId = await get().userData._id
+		try {
+			set((state) => ({ ...state, loading: true}))
+
+			let updatedPet = await axios.delete(`${BASE_URL}/pets/api/onePet/${petId}`)
+			if(updatedPet.status === 200){
+				set((state) => ({ ...state, loading: false}))
+				await get().getUserData(userId)
+			}else if(response.status !== 200){
+				set((state) => ({ ...state, loading: false, error: true, errorData: "Could not update user profile"}))
+			
+			}
+		} catch (error) {
+			console.log("ERROR updating pet", error)
+			set((state) => ({ ...state, error: true, errorData: error.message }));
+		}
+	},
 	requestServices: async () => {},
 
 }));
