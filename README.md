@@ -13,19 +13,8 @@ CataPetSitting is a unique platform dedicated to enriching the lives of pets and
 - **Backend**: Developed with Node.js and Express, ensuring robust API functionality.
 - **Database**: Utilizes MongoDB for efficient data management of user and pet information.
 
-## Installation
-1. Clone the repository.
-2. Navigate to the project directory and install dependencies with `npm install`.
-3. Start the application with `npm start`.
-
-## Directory Structure
-- `src/`: Contains all React components and hooks.
-- `api/`: Backend API logic organized by controllers and services.
-- `models/`: Database schemas for users and pets.
-
 ## Future Enhancements
 - Introduction of real-time updates for booking confirmations and care instructions.
-- Expansion to include other pet services such as grooming and veterinary care.
 
 ## Conclusion
 CataPetSitting exemplifies a harmonious integration of technology and personalized pet care. By maintaining detailed pet profiles and enabling easy information sharing, it ensures that every pet receives love and expert care even in the owner's absence.

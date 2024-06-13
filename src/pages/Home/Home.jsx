@@ -18,9 +18,9 @@ function Home({ user, loading }) {
 		// </div>
 		<div className={styles.homePage}>
 		<header className={styles.header}>
-		  <h1>Welcome to Cata Pet Sitting</h1>
+		  <h1>Welcome {user ? user : ""} to Cata's Pet Sitting</h1>
 		  <p>Your one-stop solution for pet care and management.</p>
-		  <Link to="/register" className={styles.ctaButton}>Register Now</Link>
+		  {user ? <Link to="/myprofile" className={styles.ctaButton}>Go to your profile</Link> : <Link to="/register" className={styles.ctaButton}>Register Now</Link>}
 		</header>
 		<section className={styles.features}>
 		  <h2>Why Choose Us?</h2>
